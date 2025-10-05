@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kanpur Metro Orange Theme -->
+    <color name="colorPrimary">#FF6B2C</color>
+    <color name="colorPrimaryDark">#E65A1F</color>
+    <color name="colorAccent">#FF6B2C</color>
+    
+    <!-- Splash Screen Colors -->
+    <color name="splash_background">#FF6B2C</color>
+    <color name="splash_text">#FFFFFF</color>
+    
+    <!-- Status Bar -->
+    <color name="statusBarColor">#FF6B2C</color>
+</resources>

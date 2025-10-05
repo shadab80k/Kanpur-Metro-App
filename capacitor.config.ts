@@ -10,6 +10,20 @@ const config: CapacitorConfig = {
   },
   android: {
     allowMixedContent: true
+  },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 2000,
+      launchAutoHide: true,
+      launchFadeOutDuration: 500,
+      backgroundColor: '#FF6B2C',
+      androidSplashResourceName: 'splash_custom',
+      androidScaleType: 'CENTER_CROP',
+      showSpinner: false,
+      androidSpinnerStyle: 'small',
+      iosSpinnerStyle: 'small',
+      spinnerColor: '#FFFFFF'
+    }
   }
 };
 
