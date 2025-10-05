@@ -55,22 +55,17 @@ const MorePage = () => {
         <div className="mb-6">
           <h2 className="text-lg font-semibold mb-3">Settings</h2>
           <div className="bg-white rounded-lg shadow-sm divide-y">
-            {/* Language Setting */}
-            <button
-              onClick={switchLanguage}
-              className="w-full p-4 flex items-center hover:bg-gray-50 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3">
-                <Languages className="h-5 w-5 text-metro-orange" />
+            {/* Language Setting - Disabled */}
+            <div className="p-4 flex items-center opacity-60 cursor-not-allowed">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                <Languages className="h-5 w-5 text-gray-400" />
               </div>
               <div className="flex-1 text-left">
-                <p className="font-medium">Language</p>
-                <p className="text-sm text-gray-500">{language}</p>
+                <p className="font-medium text-gray-700">Language</p>
+                <p className="text-sm text-gray-500">English</p>
               </div>
-              <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium">
-                हिं
-              </div>
-            </button>
+              <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">Coming soon</span>
+            </div>
 
             {/* Dark Mode */}
             <div className="p-4 flex items-center opacity-60 cursor-not-allowed">
