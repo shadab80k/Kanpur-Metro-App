@@ -11,8 +11,15 @@ const Index = () => {
   const { recentRoutes, stations, getLocalizedText } = useMetro();
   const navigate = useNavigate();
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [metroStatus, setMetroStatus] = useState<"normal" | "delayed" | "disrupted">("normal");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isMetroOperational, setIsMetroOperational] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  // Check if metro is operational (6:00 AM - 10:00 PM)
+  const checkMetroOperationalStatus = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    return hours >= 6 && hours < 22; // 6 AM to 10 PM
+  };
   
   // Check if onboarding has been shown before
   useEffect(() => {
@@ -20,23 +27,35 @@ const Index = () => {
     if (!onboardingShown) {
       setShowOnboarding(true);
     }
+    
+    // Set initial metro status
+    setIsMetroOperational(checkMetroOperationalStatus());
+    
+    // Update metro status every minute
+    const interval = setInterval(() => {
+      setIsMetroOperational(checkMetroOperationalStatus());
+    }, 60000); // Check every minute
+    
+    return () => clearInterval(interval);
   }, []);
   
-  // Mock function to refresh metro status
+  // Refresh metro status based on current time
   const refreshMetroStatus = () => {
-    setIsLoading(true);
+    setIsRefreshing(true);
+    
+    // Simulate loading for better UX
     setTimeout(() => {
-      // Simulating API call for metro status
-      const statuses = ["normal", "delayed", "normal", "normal"];
-      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)] as "normal" | "delayed" | "disrupted";
-      setMetroStatus(randomStatus);
-      setIsLoading(false);
+      const operational = checkMetroOperationalStatus();
+      setIsMetroOperational(operational);
+      setIsRefreshing(false);
       
       toast({
         title: "Status Updated",
-        description: `Latest metro service status: ${randomStatus.charAt(0).toUpperCase() + randomStatus.slice(1)}`,
+        description: operational 
+          ? "Metro services are currently operational" 
+          : "Metro services are closed",
       });
-    }, 1000);
+    }, 800);
   };
 
   // Onboarding slides
@@ -158,9 +177,9 @@ const Index = () => {
                 size="sm" 
                 className="h-8 w-8 p-0" 
                 onClick={refreshMetroStatus}
-                disabled={isLoading}
+                disabled={isRefreshing}
               >
-                <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 <span className="sr-only">Refresh</span>
               </Button>
             </div>
@@ -168,12 +187,10 @@ const Index = () => {
           <CardContent className="p-4 pt-0">
             <div className="flex items-center">
               <div className={`h-3 w-3 rounded-full mr-2 ${
-                metroStatus === 'normal' ? 'bg-green-500' : 
-                metroStatus === 'delayed' ? 'bg-yellow-500' : 'bg-red-500'
+                isMetroOperational ? 'bg-green-500' : 'bg-red-500'
               }`} />
               <span>
-                {metroStatus === 'normal' ? 'All services running normally' : 
-                 metroStatus === 'delayed' ? 'Minor delays on some routes' : 'Service disrupted'}
+                {isMetroOperational ? 'All services running normally' : 'Services closed'}
               </span>
             </div>
           </CardContent>
