@@ -107,6 +107,11 @@
   body {
     padding-top: env(safe-area-inset-top, 24px);
   }
+  
+  /* Toast notifications above status bar */
+  [data-radix-toast-viewport] {
+    top: calc(env(safe-area-inset-top, 24px) + 8px) !important;
+  }
 }
 
 @layer components {
