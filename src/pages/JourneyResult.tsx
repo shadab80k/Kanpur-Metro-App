@@ -97,7 +97,7 @@ Fare: ₹${route.fare}`;
         <div className="flex items-center justify-between mb-4">
           <Button 
             variant="ghost"
-            onClick={() => navigate("/journey")}
+            onClick={() => navigate(-1)}
             className="p-0 h-auto"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />

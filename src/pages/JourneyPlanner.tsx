@@ -22,6 +22,16 @@ const JourneyPlanner = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   
+  // Clear selections when page loads fresh (not from StationInfo)
+  useEffect(() => {
+    // Only clear if not coming from StationInfo page (which sets selections)
+    const fromStationInfo = location.state?.fromStationInfo;
+    if (!fromStationInfo) {
+      setSelectedSource(null);
+      setSelectedDestination(null);
+    }
+  }, []); // Only run on mount
+  
   const swapStations = () => {
     const temp = selectedSource;
     setSelectedSource(selectedDestination);

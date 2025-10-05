@@ -46,7 +46,7 @@ const StationInfo = () => {
     if (station) {
       setSelectedSource(station);
       window.scrollTo(0, 0);
-      navigate("/journey");
+      navigate("/journey", { state: { fromStationInfo: true } });
     }
   };
   
@@ -54,7 +54,7 @@ const StationInfo = () => {
     if (station) {
       setSelectedDestination(station);
       window.scrollTo(0, 0);
-      navigate("/journey");
+      navigate("/journey", { state: { fromStationInfo: true } });
     }
   };
   

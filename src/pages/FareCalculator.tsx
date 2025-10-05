@@ -25,6 +25,13 @@ const FareCalculator = () => {
   } | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   
+  // Clear selections when page loads fresh
+  useEffect(() => {
+    setSelectedSource(null);
+    setSelectedDestination(null);
+    setFareResult(null);
+  }, []); // Only run on mount
+  
   // Reset fare result when stations change
   useEffect(() => {
     if (fareResult) {
