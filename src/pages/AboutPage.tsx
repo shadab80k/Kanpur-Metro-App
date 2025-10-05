@@ -112,7 +112,7 @@ const AboutPage = () => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Developer</span>
-              <span className="font-medium">Metro Tech Team</span>
+              <span className="font-medium">Mohd Shadab</span>
             </div>
           </div>
         </div>
@@ -152,7 +152,6 @@ const AboutPage = () => {
         <div className="text-center text-sm text-gray-500 mt-6">
           <p className="mb-2">Made with ❤️ for Kanpur Metro</p>
           <p className="text-xs">© 2025 Kanpur Metro Rail Corporation Ltd.</p>
-          <p className="text-xs mt-2">All information is subject to change</p>
         </div>
       </div>
     </div>
