@@ -329,26 +329,6 @@ This project is developed for educational and public service purposes.
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact: Kanpur Metro Helpline 0512-2246200
-
----
-
-## 🔄 Version History
-
-### v1.1 (Current)
-- ✅ Removed splash screen for instant launch
-- ✅ Fixed toast notifications z-index
-- ✅ Optimized status bar safe area
-- ✅ Improved app performance
-
-### v1.0
-- ✅ Initial release
-- ✅ Journey planning functionality
-- ✅ Station information
-- ✅ Interactive metro map
-- ✅ Fare calculator
-- ✅ Real-time status updates
-
 ---
 
 <div align="center">
