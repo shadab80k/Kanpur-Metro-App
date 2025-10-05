@@ -311,9 +311,9 @@ This project is developed for educational and public service purposes.
 
 ## 👤 Author
 
-**Shadab**
+**Mohd Shadab**
 - GitHub: [@shadab80k](https://github.com/shadab80k)
-
+- Linkedin: [Mohd Shadab](https://www.linkedin.com/in/shadab80k/)
 ---
 
 ## 🙏 Acknowledgments
