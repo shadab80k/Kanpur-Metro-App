@@ -190,14 +190,48 @@ const FareCalculator = () => {
         
         {/* Fare information */}
         <div className="mt-6">
-          <h2 className="text-sm font-medium text-gray-700 mb-2">{getLocalizedText("Fare Information")}</h2>
-          <div className="bg-white rounded-lg p-4 shadow-sm text-sm">
-            <ul className="list-disc list-inside space-y-2 text-gray-600">
-              <li>{getLocalizedText("Smart card users get 10% discount on fares")}</li>
-              <li>{getLocalizedText("Children below 90cm height travel free")}</li>
-              <li>{getLocalizedText("Senior citizens (60+ years) get 10% discount with ID")}</li>
-              <li>{getLocalizedText("Group tickets available for 5 or more passengers")}</li>
-            </ul>
+          <h2 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+            <Ticket className="h-4 w-4 text-metro-orange" />
+            Fare Information
+          </h2>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            {/* Fare Structure */}
+            <div className="mb-4">
+              <h3 className="text-xs font-semibold text-gray-700 mb-2 uppercase">Fare Structure</h3>
+              <ul className="space-y-1.5 text-sm text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>Minimum Fare: ₹15 (up to 2 km)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>Maximum Fare: ₹50 (end-to-end journey)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>Fare increases by ₹5 for every additional 2 km</span>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Payment Methods */}
+            <div className="pt-3 border-t border-gray-100">
+              <h3 className="text-xs font-semibold text-gray-700 mb-2 uppercase">Payment Options</h3>
+              <ul className="space-y-1.5 text-sm text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>QR Code tokens available at all stations</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>Rechargeable Smart Cards (minimum ₹100)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-metro-orange mr-2">•</span>
+                  <span>UPI payments accepted at ticket counters</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
