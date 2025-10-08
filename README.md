@@ -56,9 +56,10 @@ Kanpur Metro App is a **production-ready mobile application** designed to revolu
 
 ### 🗺️ Journey Planning
 - **Smart Route Calculation** - Find the fastest route between any two stations
-- **Fare Calculator** - Instant fare calculation with ticket and smart card prices
+- **Accurate Fare System** - Official Kanpur Metro fare structure (₹10, ₹15, ₹20, ₹30, ₹40)
+- **Smart Card Discounts** - 10% savings shown automatically (₹9, ₹13.5, ₹18, ₹27, ₹36)
 - **Platform Information** - Know which platform to board from
-- **Travel Time Estimates** - Accurate journey duration predictions
+- **Travel Time Estimates** - Precise journey duration predictions
 - **Recent Journeys** - Quick access to frequently used routes
 
 ### 📍 Station Information
@@ -86,7 +87,7 @@ Kanpur Metro App is a **production-ready mobile application** designed to revolu
 - **Smooth Animations** - GPU-accelerated transitions
 - **Native Feel** - Hardware back button support
 - **No Splash Delay** - Instant app launch
-- **Offline First** - Core features work without internet
+- **Fully Offline** - All features work without internet
 
 ---
 
@@ -111,7 +112,6 @@ Kanpur Metro App is a **production-ready mobile application** designed to revolu
 
 ### State Management
 - **React Context API** - Global state management
-- **TanStack Query** - Server state management
 - **Local Storage** - Persistent data storage
 
 ### Development Tools
@@ -121,12 +121,47 @@ Kanpur Metro App is a **production-ready mobile application** designed to revolu
 
 ---
 
+## 📸 Screenshots
+
+<div align="center">
+<table>
+<tr>
+<td><strong>🏠 Home Screen</strong><br/>Quick access to all features</td>
+<td><strong>🗺️ Journey Planner</strong><br/>Smart route calculation</td>
+<td><strong>🎫 Fare Calculator</strong><br/>Instant fare details</td>
+</tr>
+<tr>
+<td><strong>🚉 Station Info</strong><br/>Comprehensive details</td>
+<td><strong>🗺️ Metro Map</strong><br/>Interactive visualization</td>
+<td><strong>📊 Route Details</strong><br/>Complete journey info</td>
+</tr>
+</table>
+</div>
+
+---
+
+## 🎯 Problem Solved
+
+**Challenge**: Metro commuters struggle with:
+- ❌ Not knowing accurate fares before travel
+- ❌ Confusion about which platform to board from
+- ❌ Lack of comprehensive station information
+- ❌ No offline access to metro data
+
+**Solution**: Kanpur Metro App provides:
+- ✅ Instant, accurate fare calculations
+- ✅ Platform information for every journey
+- ✅ Detailed station facilities and amenities
+- ✅ Complete offline functionality
+
+---
+
 ## 📥 Installation
 
 ### Prerequisites
 - Node.js 18+ and npm
 - Android Studio (for mobile build)
-- JDK 17+
+- JDK 21+
 - Git
 
 ### Quick Start
@@ -150,12 +185,12 @@ npm run build
 
 ```bash
 # Sync with Capacitor
-npm run cap:sync
+npx cap sync android
 
 # Open in Android Studio
-npm run cap:open:android
+npx cap open android
 
-# Or build directly with Gradle
+# Or build directly with Gradle (requires Java 21)
 cd android
 ./gradlew assembleDebug
 ```
@@ -203,8 +238,7 @@ kanpur-metro-app/
 │   │   ├── MetroMap.tsx    # Interactive map
 │   │   └── RouteViewer.tsx # Journey visualization
 │   ├── contexts/           # React Context providers
-│   │   ├── MetroContext.tsx
-│   │   └── ThemeContext.tsx
+│   │   └── MetroContext.tsx
 │   ├── pages/              # Route pages
 │   │   ├── Index.tsx       # Home page
 │   │   ├── JourneyPlanner.tsx
@@ -224,24 +258,10 @@ kanpur-metro-app/
 
 ### For Users
 
-1. **Plan a Journey**
-   - Tap "Plan Journey" on home screen
-   - Select source and destination stations
-   - View route, fare, and platform info
-
-2. **Check Station Details**
-   - Go to "Station Info" tab
-   - Select any station from the list
-   - Browse facilities, gates, parking, and platforms
-
-3. **View Metro Map**
-   - Tap "Metro Map" card
-   - Pan and zoom to explore
-   - Tap stations for quick info
-
-4. **Calculate Fare**
-   - Use "Fare Calculator"
-   - Select stations or view full fare chart
+1. **Download APK** - Visit [download page](https://kanpur-metro-apk-download-six.vercel.app/)
+2. **Install** - Enable unknown sources and install
+3. **Plan Journey** - Select source and destination
+4. **View Details** - Check fare, platform, and travel time
 
 ### For Developers
 
@@ -249,69 +269,10 @@ kanpur-metro-app/
 // Access Metro Context
 import { useMetro } from '@/contexts/MetroContext';
 
-const { stations, calculateRoute, getFare } = useMetro();
+const { stations, planJourney } = useMetro();
 
 // Calculate route
-const route = calculateRoute(sourceStation, destinationStation);
-
-// Get fare
-const fare = getFare(distance);
-```
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-<table>
-<tr>
-<td><strong>🏠 Home Screen</strong><br/>Quick access to all features</td>
-<td><strong>🗺️ Journey Planner</strong><br/>Smart route calculation</td>
-<td><strong>🎫 Fare Calculator</strong><br/>Instant fare details</td>
-</tr>
-<tr>
-<td><strong>🚉 Station Info</strong><br/>Comprehensive details</td>
-<td><strong>🗺️ Metro Map</strong><br/>Interactive visualization</td>
-<td><strong>📊 Route Details</strong><br/>Complete journey info</td>
-</tr>
-</table>
-</div>
-
----
-
-## 🎯 Problem Solved
-
-**Challenge**: Metro commuters struggle with:
-- ❌ Not knowing accurate fares before travel
-- ❌ Confusion about which platform to board from
-- ❌ Lack of comprehensive station information
-- ❌ No offline access to metro data
-
-**Solution**: Kanpur Metro App provides:
-- ✅ Instant, accurate fare calculations
-- ✅ Platform information for every journey
-- ✅ Detailed station facilities and amenities
-- ✅ Complete offline functionality
-
----
-
-## 🔧 Configuration
-
-### Customization
-
-**Change Theme Colors** - Edit `src/index.css`:
-```css
---primary: 24 100% 50%; /* Orange */
-```
-
-**Modify Metro Data** - Update station info in `src/contexts/MetroContext.tsx`
-
-**Adjust App Settings** - Configure in `capacitor.config.ts`:
-```typescript
-{
-  appId: 'com.kanpurmetro.app',
-  appName: 'Kanpur Metro'
-}
+const route = planJourney(sourceStation, destinationStation);
 ```
 
 ---
@@ -406,6 +367,7 @@ This project is developed for educational and public service purposes.
 - **Architecture**: Component-based design, Context API, State management
 - **Performance**: Code splitting, Optimization, Bundle size reduction
 - **Tools**: Git, Vite, ESLint, NPM, Vercel
+
 ---
 
 ## 🙏 Acknowledgments
@@ -420,7 +382,9 @@ This project is developed for educational and public service purposes.
 ## 📞 Support
 
 For issues, questions, or suggestions:
-- Open an issue on GitHub
+- Open an issue on [GitHub](https://github.com/shadab80k/Kanpur-Metro-App/issues)
+- Download the app: [APK Download](https://kanpur-metro-apk-download-six.vercel.app/)
+
 ---
 
 <div align="center">
@@ -429,6 +393,6 @@ For issues, questions, or suggestions:
 
 ⭐ Star this repo if you find it helpful!
 
-[Report Bug](https://github.com/shadab80k/Kanpur-Metro-App/issues) • [Request Feature](https://github.com/shadab80k/Kanpur-Metro-App/issues)
+[Report Bug](https://github.com/shadab80k/Kanpur-Metro-App/issues) • [Request Feature](https://github.com/shadab80k/Kanpur-Metro-App/issues) • [Download APK](https://kanpur-metro-apk-download-six.vercel.app/)
 
 </div>
