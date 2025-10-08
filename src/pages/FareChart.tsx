@@ -8,13 +8,11 @@ const FareChart = () => {
   const navigate = useNavigate();
   
   const fareData = [
-    { distance: "Up to 1 km", fare: 10 },
-    { distance: "1 – 2 km", fare: 15 },
-    { distance: "3 – 6 km", fare: 20 },
-    { distance: "7 – 9 km", fare: 30 },
-    { distance: "10 – 13 km", fare: 40 },
-    { distance: "14 – 17 km", fare: 50 },
-    { distance: "18 km and above", fare: 60 },
+    { distance: "0 - 2.6 km", fare: 10, smartCard: 9 },
+    { distance: "2.6 - 4.2 km", fare: 15, smartCard: 13.5 },
+    { distance: "4.2 - 9 km", fare: 20, smartCard: 18 },
+    { distance: "9 - 12.5 km", fare: 30, smartCard: 27 },
+    { distance: "12.5+ km", fare: 40, smartCard: 36 },
   ];
 
   return (
@@ -65,7 +63,7 @@ const FareChart = () => {
                       ₹{item.fare}
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap text-sm text-right text-metro-orange">
-                      ₹{Math.floor(item.fare * 0.9)}
+                      ₹{item.smartCard}
                     </td>
                   </tr>
                 ))}
@@ -75,7 +73,7 @@ const FareChart = () => {
           
           <div className="mt-6">
             <p className="text-xs text-gray-500">
-              Note: Fares are based on the number of stations traveled and may vary slightly depending on the exact route.
+              Note: Fares are based on cumulative distance from source station. Total Orange Line length: 16 km (IIT Kanpur to Kanpur Central).
             </p>
           </div>
         </div>

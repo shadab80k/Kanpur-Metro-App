@@ -305,7 +305,7 @@ const Index = () => {
             <CardContent className="grid grid-cols-3 gap-2 p-4">
               <div className="text-center">
                 <p className="text-xs text-gray-500">Total Length</p>
-                <p className="text-lg font-medium">17 km</p>
+                <p className="text-lg font-medium">16 km</p>
               </div>
               <div className="text-center">
                 <p className="text-xs text-gray-500">Stations</p>

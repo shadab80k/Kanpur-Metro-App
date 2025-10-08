@@ -1433,25 +1433,28 @@ export function generateDummyNextTrains(stationId: number): TrainSchedule[] {
   ];
 }
 
-// Calculate fare based on distance (Kanpur Metro Official Fare Structure)
+// Calculate fare based on cumulative distance (Kanpur Metro Official Fare Structure)
+// Accurate fare slabs based on cumulative distance from IIT Kanpur
 export function calculateFare(distanceInKm: number): { fare: number; smartCardFare: number } {
   let fare = 0;
   
-  // Accurate Kanpur Metro Fare Slabs
-  if (distanceInKm <= 1) {
-    fare = 10;              // Up to 1 km → ₹10
-  } else if (distanceInKm <= 2) {
-    fare = 15;              // 1–2 km → ₹15
-  } else if (distanceInKm <= 6) {
-    fare = 20;              // 3–6 km → ₹20
-  } else if (distanceInKm <= 9) {
-    fare = 30;              // 7–9 km → ₹30
-  } else if (distanceInKm <= 13) {
-    fare = 40;              // 10–13 km → ₹40
-  } else if (distanceInKm <= 17) {
-    fare = 50;              // 14–17 km → ₹50
+  // Accurate Kanpur Metro Fare Slabs based on cumulative distance
+  // ₹10: 0 - 2.559 km (up to SPM Hospital)
+  // ₹15: 2.56 - 4.187 km (up to Gurudev Chauraha)
+  // ₹20: 4.188 - 8.98 km (up to Moti Jheel)
+  // ₹30: 8.981 - 12.43 km (up to Bada Chauraha)
+  // ₹40: 12.431 - 16 km (up to Kanpur Central)
+  
+  if (distanceInKm <= 2.559) {
+    fare = 10;              // 0 - 2.559 km → ₹10
+  } else if (distanceInKm <= 4.187) {
+    fare = 15;              // 2.56 - 4.187 km → ₹15
+  } else if (distanceInKm <= 8.98) {
+    fare = 20;              // 4.188 - 8.98 km → ₹20
+  } else if (distanceInKm <= 12.43) {
+    fare = 30;              // 8.981 - 12.43 km → ₹30
   } else {
-    fare = 60;              // 18 km and above → ₹60
+    fare = 40;              // 12.431+ km → ₹40
   }
   
   // Smart card gives 10% discount
@@ -1461,40 +1464,40 @@ export function calculateFare(distanceInKm: number): { fare: number; smartCardFa
 }
 
 // Accurate inter-station distances for Kanpur Metro Orange Line (in km)
-// Based on Kanpur Metro Phase 1 Orange Line - Total 17 km
-// Distance from IIT Kanpur to each station
+// Based on Official Kanpur Metro Orange Line Data - Total 16 km
+// Cumulative distance from IIT Kanpur to each station
 const cumulativeDistances: { [key: number]: number } = {
   1: 0,      // IIT Kanpur
-  2: 1.4,    // Kalyanpur
-  3: 2.7,    // SPM Hospital
-  4: 3.3,    // Vishwavidyalaya
-  5: 5.1,    // Gurudev Chauraha
-  6: 6.4,    // Geeta Nagar
-  7: 8.8,    // Rawatpur
-  8: 9.6,    // LLR Hospital
-  9: 10.9,   // Motijheel
-  10: 12.2,  // Chunniganj
-  11: 13.0,  // Naveen Market
-  12: 13.7,  // Bada Chauraha
-  13: 14.5,  // Nayaganj
-  14: 17.0,  // Kanpur Central
+  2: 1.454,  // Kalyanpur
+  3: 2.559,  // SPM Hospital
+  4: 3.44,   // Vishwavidyalaya
+  5: 4.187,  // Gurudev Chauraha
+  6: 5.273,  // Geeta Nagar
+  7: 6.856,  // Rawatpur
+  8: 8.194,  // LLR Hospital
+  9: 8.98,   // Motijheel
+  10: 10.18, // Chunniganj
+  11: 11.28, // Naveen Market
+  12: 12.43, // Bada Chauraha
+  13: 13.43, // Nayaganj
+  14: 16.0,  // Kanpur Central
 };
 
-// Inter-station distances (calculated from cumulative distances)
+// Inter-station distances (accurate official data from Kanpur Metro)
 const interStationDistances: { [key: string]: number } = {
-  "1-2": 1.4,   // IIT Kanpur to Kalyanpur
-  "2-3": 1.3,   // Kalyanpur to SPM Hospital
-  "3-4": 0.6,   // SPM Hospital to Vishwavidyalaya
-  "4-5": 1.8,   // Vishwavidyalaya to Gurudev Chauraha
-  "5-6": 1.3,   // Gurudev Chauraha to Geeta Nagar
-  "6-7": 2.4,   // Geeta Nagar to Rawatpur
-  "7-8": 0.8,   // Rawatpur to LLR Hospital
-  "8-9": 1.3,   // LLR Hospital to Motijheel
-  "9-10": 1.3,  // Motijheel to Chunniganj
-  "10-11": 0.8, // Chunniganj to Naveen Market
-  "11-12": 0.7, // Naveen Market to Bada Chauraha
-  "12-13": 0.8, // Bada Chauraha to Nayaganj
-  "13-14": 2.5, // Nayaganj to Kanpur Central
+  "1-2": 1.454,  // IIT Kanpur to Kalyanpur
+  "2-3": 1.105,  // Kalyanpur to SPM Hospital
+  "3-4": 0.881,  // SPM Hospital to Vishwavidyalaya
+  "4-5": 0.747,  // Vishwavidyalaya to Gurudev Chauraha
+  "5-6": 1.086,  // Gurudev Chauraha to Geeta Nagar
+  "6-7": 1.583,  // Geeta Nagar to Rawatpur
+  "7-8": 1.338,  // Rawatpur to LLR Hospital
+  "8-9": 0.786,  // LLR Hospital to Motijheel
+  "9-10": 1.2,   // Motijheel to Chunniganj
+  "10-11": 1.1,  // Chunniganj to Naveen Market
+  "11-12": 1.15, // Naveen Market to Bada Chauraha
+  "12-13": 1.0,  // Bada Chauraha to Nayaganj
+  "13-14": 2.57, // Nayaganj to Kanpur Central
 };
 
 // Calculate distance between stations
@@ -1530,9 +1533,9 @@ export function getStationsBetween(sourceId: number, destinationId: number): Sta
 
 // Calculate travel time
 export function calculateTravelTime(distanceInKm: number, sourceId: number, destinationId: number): number {
-  // Average speed: ~36 km/h for Kanpur Metro (17km in ~28 mins)
+  // Average speed: ~34.3 km/h for Kanpur Metro (16km end-to-end in ~28 mins)
   // Station stop time: 20-30 seconds average
-  const avgSpeedInKmPerMin = 36 / 60; // ~0.6 km/min
+  const avgSpeedInKmPerMin = 34.3 / 60; // ~0.57 km/min
   const travelTimeInMinutes = distanceInKm / avgSpeedInKmPerMin;
   
   // Number of intermediate stops (excluding source and destination)

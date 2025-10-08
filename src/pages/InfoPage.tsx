@@ -106,7 +106,7 @@ const InfoPage = () => {
             </div>
             <div>
               <p className="font-medium">About Kanpur Metro</p>
-              <p className="text-xs text-gray-500">Orange Line: 17 km • 14 Stations</p>
+              <p className="text-xs text-gray-500">Orange Line: 16 km • 14 Stations</p>
               <p className="text-xs text-gray-500">9 Elevated and 5 Underground Stations</p>
             </div>
           </div>

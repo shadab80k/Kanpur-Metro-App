@@ -40,7 +40,7 @@ const AboutPage = () => {
               </div>
               <div>
                 <p className="font-medium">Network Length</p>
-                <p className="text-sm text-gray-600">17 km Orange Line</p>
+                <p className="text-sm text-gray-600">16 km Orange Line</p>
               </div>
             </div>
 
@@ -143,7 +143,7 @@ const AboutPage = () => {
             </li>
             <li className="flex items-start">
               <span className="text-metro-orange mr-2">•</span>
-              <span className="text-sm text-gray-700">Bilingual support (English & Hindi)</span>
+              <span className="text-sm text-gray-700">Fully offline friendly</span>
             </li>
           </ul>
         </div>
