@@ -23,7 +23,7 @@ Kanpur Metro App is a modern, user-friendly mobile application designed to enhan
 ### 🎯 Key Highlights
 
 - **14 Stations** - Complete coverage of Kanpur Metro
-- **17 km** - Total metro line length
+- **16 km** - Total metro line length
 - **30K+** - Daily riders served
 - **Real-time Status** - Live metro service updates
 - **Offline Support** - Works without internet connection
